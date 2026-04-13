@@ -1,0 +1,22 @@
+# Dependencies
+/dashboard/node_modules/
+/hrm-tool/.gradle/
+/hrm-tool/build/
+.gradle/
+build/
+
+# Compilation / IDE
+*.class
+*.log
+.DS_Store
+.idea/
+.vscode/
+
+# Local data
+/mock_data/
+# Note: Keeping mock_data might be useful for the user, but usually it is local.
+# Given the user says "add the code", I'll include mock_data for now but ignore node_modules.
+
+# Jackson / Java specific
+bin/
+out/

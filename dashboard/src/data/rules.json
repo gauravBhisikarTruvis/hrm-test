@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "name": "underage_check",
+    "category": "Statutory Compliance",
+    "description": "Ensures no employees are under the age of 18 as per labour laws.",
+    "content": {
+      "contentType": "application/vnd.gorules.decision",
+      "nodes": [
+        {
+          "id": "node-1",
+          "name": "Underage Check Table",
+          "type": "decisionTableNode",
+          "position": { "x": 100, "y": 100 },
+          "content": {
+            "hitPolicy": "first",
+            "inputs": [{"id": "in-1", "name": "Age", "field": "age"}],
+            "outputs": [{"id": "out-1", "name": "Violation", "field": "isViolator"}],
+            "rules": [
+              {"in-1": "< 18", "out-1": "true"},
+              {"in-1": ">= 18", "out-1": "false"}
+            ]
+          }
+        }
+      ],
+      "edges": []
+    }
+  },
+  {
+    "id": 2,
+    "name": "pre_employment_screening",
+    "category": "Statutory Compliance",
+    "description": "Verifies that all full-time employees have completed baseline screening.",
+    "content": {
+      "contentType": "application/vnd.gorules.decision",
+      "nodes": [
+        {
+          "id": "node-1",
+          "name": "Screening Check",
+          "type": "decisionTableNode",
+          "position": { "x": 100, "y": 100 },
+          "content": {
+            "hitPolicy": "first",
+            "inputs": [{"id": "in-1", "name": "Type", "field": "employeeType"}],
+            "outputs": [{"id": "out-1", "name": "Violation", "field": "isViolator"}],
+            "rules": [{"in-1": "not Full Time", "out-1": "true"}]
+          }
+        }
+      ],
+      "edges": []
+    }
+  },
+  {
+    "id": 5,
+    "name": "mass_payroll_error_prevention",
+    "category": "Data Accuracy",
+    "description": "Flags potential payroll anomalies based on Unpaid status in leave reports.",
+    "content": {
+      "contentType": "application/vnd.gorules.decision",
+      "nodes": [
+        {
+          "id": "node-1",
+          "name": "Payroll Error Check",
+          "type": "decisionTableNode",
+          "position": { "x": 100, "y": 100 },
+          "content": {
+            "hitPolicy": "first",
+            "inputs": [{"id": "in-1", "name": "Pay Status", "field": "Paid/Unpaid"}],
+            "outputs": [{"id": "out-1", "name": "Violation", "field": "isViolator"}],
+            "rules": [{"in-1": "Unpaid", "out-1": "true"}]
+          }
+        }
+      ],
+      "edges": []
+    }
+  },
+  {
+    "id": 8,
+    "name": "maker_checker_approval",
+    "category": "Segregation of Duties",
+    "description": "Detects Expense reports where requester and approver are the same (or System).",
+    "content": {
+      "contentType": "application/vnd.gorules.decision",
+      "nodes": [
+        {
+          "id": "node-1",
+          "name": "Expense SoD Check",
+          "type": "decisionTableNode",
+          "position": { "x": 100, "y": 100 },
+          "content": {
+            "hitPolicy": "first",
+            "inputs": [
+              {"id": "in-1", "name": "Claimed By", "field": "claimedBy"},
+              {"id": "in-2", "name": "Acted By", "field": "actedBy"}
+            ],
+            "outputs": [{"id": "out-1", "name": "Violation", "field": "isViolator"}],
+            "rules": [{"in-1": "== in-2", "out-1": "true"}]
+          }
+        }
+      ],
+      "edges": []
+    }
+  },
+  {
+    "id": 9,
+    "name": "salary_download_resigned",
+    "category": "Access Control Intelligence",
+    "description": "Bulk Salary download after 2 weeks of resignation.",
+    "content": {
+      "contentType": "application/vnd.gorules.decision",
+      "nodes": [
+        {
+          "id": "node-1",
+          "name": "Data Exfiltration Check",
+          "type": "decisionTableNode",
+          "position": { "x": 100, "y": 100 },
+          "content": {
+            "hitPolicy": "first",
+            "inputs": [{"id": "in-1", "name": "Action", "field": "action"}],
+            "outputs": [{"id": "out-1", "name": "Violation", "field": "isViolator"}],
+            "rules": [{"in-1": "contains DOWNLOAD", "out-1": "true"}]
+          }
+        }
+      ],
+      "edges": []
+    }
+  },
+  {
+    "id": 10,
+    "name": "pii_exposure_masking",
+    "category": "Access Control Intelligence",
+    "description": "Preventing PII exposure through intelligent masking and access controls.",
+    "content": {
+      "contentType": "application/vnd.gorules.decision",
+      "nodes": [
+        {
+          "id": "node-1",
+          "name": "PII Masking Check",
+          "type": "decisionTableNode",
+          "position": { "x": 100, "y": 100 },
+          "content": {
+            "hitPolicy": "first",
+            "inputs": [{"id": "in-1", "name": "User Role", "field": "userRole"}],
+            "outputs": [{"id": "out-1", "name": "Violation", "field": "isViolator"}],
+            "rules": [{"in-1": "not HR", "out-1": "true"}]
+          }
+        }
+      ],
+      "edges": []
+    }
+  }
+]

@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.hrm'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // JSON Rules (Implementation handled via Jackson for minimalism and Java 17 compatibility)
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+    
+    // PostgreSQL Driver
+    implementation 'org.postgresql:postgresql:42.7.3'
+    
+    // Logging
+    implementation 'org.slf4j:slf4j-simple:2.0.13'
+    
+    // Eclipse Vert.x Reactive Web Framework
+    implementation 'io.vertx:vertx-core:4.5.7'
+    implementation 'io.vertx:vertx-web:4.5.7'
+}
+
+application {
+    mainClass = 'com.hrm.Main'
+}
+
+tasks.withType(JavaCompile) {
+    options.release = 17
+}
