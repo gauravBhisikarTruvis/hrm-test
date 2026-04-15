@@ -1,8 +1,8 @@
 Frontend
 
-cd dashboard
-npm install
-npm run dev
+# cd dashboard
+# npm install
+# npm run dev
 
 
 Backend 
