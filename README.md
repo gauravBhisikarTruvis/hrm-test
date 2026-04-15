@@ -1,9 +1,9 @@
-Frontend
+#Frontend
 
 # cd dashboard
 # npm install
 # npm run dev
 
 
-Backend 
-run main.java
+#Backend 
+#run main.java
